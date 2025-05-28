@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft/libft.h"
 #include "push_swap.h"
 
 t_stack	*rotate_a(t_stack *a, t_list *ops)
@@ -34,26 +35,33 @@ t_stack	*rotate_b(t_stack *b, t_list *ops)
 
 t_stack	*rrotate_a(t_stack *a, t_list *ops)
 {
-	t_list	*tmp;
+	t_list *tmp;
 
-	tmp = a->bottom;
-	a->bottom = NULL;
-	tmp->next = a->top;
-	a->top = tmp;
-	a->bottom = ft_lstlast(a->top);
+	tmp = a->top;
+	while (tmp->next->next != NULL)
+	{
+		ft_putnbr_fd(*(int *)tmp->content, 1);
+		tmp = tmp->next;
+	}
+	a->bottom->next = a->top;
+	a->top = a->bottom;
+	a->bottom = tmp;
+	tmp->next = NULL;
 	ft_lstadd_back(&ops, ft_lstnew("rra"));
 	return (a);
 }
 
 t_stack	*rrotate_b(t_stack *b, t_list *ops)
 {
-	t_list	*tmp;
+	t_list *tmp;
 
-	tmp = b->bottom;
-	b->bottom = NULL;
-	tmp->next = b->top;
-	b->top = tmp;
-	b->bottom = ft_lstlast(b->top);
+	tmp = b->top;
+	while (tmp->next->next != NULL)
+		tmp = tmp->next;
+	b->bottom->next = b->top;
+	b->top = b->bottom;
+	b->bottom = tmp;
+	tmp->next = NULL;
 	ft_lstadd_back(&ops, ft_lstnew("rrb"));
 	return (b);
 }
@@ -62,23 +70,22 @@ t_stack	*push_a(t_stack *a, t_stack *b, t_list *ops)
 {
 	t_list	*tmp;
 
-	tmp = a->top->next;
-	a->top->next = b->top;
-	b->top = a->top;
-	a->top = tmp;
+	tmp = a->top;
+	a->top = b->top;
+	b->top = b->top->next;
+	a->top->next = tmp;
 	ft_lstadd_back(&ops, ft_lstnew("pa"));
 	return (a);
 }
 
-// TODO: Both this and push_a are wrong, change with lstadd front and co
 t_stack	*push_b(t_stack *a, t_stack *b, t_list *ops)
 {
 	t_list	*tmp;
 
-	tmp = b->top->next;
-	b->top->next = a->top;
-	a->top = b->top;
-	b->top = tmp;
+	tmp = b->top;
+	b->top = a->top;
+	a->top = a->top->next;
+	b->top->next = tmp;
 	ft_lstadd_back(&ops, ft_lstnew("pb"));
 	return (b);
 }

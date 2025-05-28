@@ -13,9 +13,14 @@
 #include "libft/libft.h"
 #include "push_swap.h"
 
-void	test_fn(void *str)
+void	lstprintchr(void *str)
 {
 	ft_putendl_fd((char *)str, 1);
+}
+void	lstprintnbr(void *i)
+{
+	ft_putnbr_fd(*(int *)i, 1);
+	ft_putchar_fd('\n', 1);
 }
 int	main(void)
 {
@@ -34,9 +39,11 @@ int	main(void)
 		ft_lstadd_back(&tester, ft_lstnew(&arr[i]));
 	a->top = tester;
 	a->bottom = ft_lstlast(tester);
+	ft_putnbr_fd(*(int *)ft_lstlast(a->top)->content, 1);
+	ft_lstiter(a->top, &lstprintnbr);
 	b->top = NULL;
 	b->bottom = NULL;
 	ops = NULL;
 	quicksort_a(a, b, ops, 8);
-	ft_lstiter(ops, &test_fn);
+	ft_lstiter(ops, &lstprintchr);
 }
