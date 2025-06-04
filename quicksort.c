@@ -12,24 +12,24 @@
 
 #include "push_swap.h"
 
-t_stack	*quicksort_a(t_stack *a, t_stack *b, t_list *ops, size_t len)
+t_stack	*quicksort_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 {
 	int		pivot;
 	size_t	i;
 	t_list	*tmp;
 
 	if (len <= 1)
-		return (a);
-	pivot = ft_lstmedian(a->top, len);
-	tmp = a->top;
+		return (*a);
+	pivot = ft_lstmedian((*a)->top, len);
+	tmp = (*a)->top;
 	i = -1;
-	while (tmp && ++i < len)
+	while (++i < len)
 	{
 		if (*((int *)tmp->content) <= pivot)
 			push_b(a, b, ops);
 		else
 			rotate_a(a, ops);
-		tmp = tmp->next;
+		tmp = (*a)->top;
 	}
 	i = -1;
 	while (++i < len / 2)
@@ -39,27 +39,27 @@ t_stack	*quicksort_a(t_stack *a, t_stack *b, t_list *ops, size_t len)
 	i = -1;
 	while (++i < (len / 2 + len % 2))
 		push_a(a, b, ops);
-	return (a);
+	return (*a);
 }
 
-t_stack	*quicksort_b(t_stack *a, t_stack *b, t_list *ops, size_t len)
+t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 {
 	int		pivot;
 	size_t	i;
 	t_list	*tmp;
 
 	if (len <= 1)
-		return (b);
-	pivot = ft_lstmedian(b->top, len);
-	tmp = b->top;
+		return (*b);
+	pivot = ft_lstmedian((*b)->top, len);
+	tmp = (*b)->top;
 	i = -1;
-	while (tmp && ++i < len)
+	while (++i < len)
 	{
 		if (*((int *)tmp->content) >= pivot)
 			push_a(a, b, ops);
 		else
 			rotate_b(a, ops);
-		tmp = tmp->next;
+		tmp = (*b)->top;
 	}
 	i = -1;
 	while (++i < len / 2)
@@ -69,5 +69,5 @@ t_stack	*quicksort_b(t_stack *a, t_stack *b, t_list *ops, size_t len)
 	i = -1;
 	while (++i < (len / 2 + len % 2))
 		push_b(a, b, ops);
-	return (b);
+	return (*b);
 }

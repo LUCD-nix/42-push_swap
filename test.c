@@ -44,6 +44,6 @@ int	main(void)
 	b->top = NULL;
 	b->bottom = NULL;
 	ops = NULL;
-	quicksort_a(a, b, ops, 8);
+	quicksort_a(&a, &b, &ops, 8);
 	ft_lstiter(ops, &lstprintchr);
 }

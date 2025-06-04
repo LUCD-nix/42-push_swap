@@ -47,14 +47,17 @@ static void	ft_sort_int_tab(int *tab, int size)
 int	ft_lstmedian(t_list *lst, size_t size)
 {
 	int	*arr;
-	int	i;
+	size_t i;
 
 	arr = ft_calloc(sizeof(int), size);
 	if (!arr)
 		return (0);
 	i = -1;
-	while (++i < size)
+	while (++i < size && lst) // TODO: This will come back to bite me in the ass
+	{
 		arr[i] = *((int *)lst->content);
+		lst = lst->next;
+	}
 	ft_sort_int_tab(arr, size);
 	return (arr[size / 2 - !(size % 2)]);
 }
