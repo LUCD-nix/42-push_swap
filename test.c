@@ -39,8 +39,6 @@ int	main(void)
 		ft_lstadd_back(&tester, ft_lstnew(&arr[i]));
 	a->top = tester;
 	a->bottom = ft_lstlast(tester);
-	ft_putnbr_fd(*(int *)ft_lstlast(a->top)->content, 1);
-	ft_lstiter(a->top, &lstprintnbr);
 	b->top = NULL;
 	b->bottom = NULL;
 	ops = NULL;
