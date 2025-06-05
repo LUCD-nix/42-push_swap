@@ -13,7 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-// TODO: find a while to compile this fucker
+
 typedef struct s_stack
 {
 	t_list	*top;
@@ -21,6 +21,8 @@ typedef struct s_stack
 }	t_stack;
 
 int		ft_lstmedian(t_list *lst, size_t size);
+t_list	*prune_iter(t_list	**ops);
+
 t_stack	*rotate_a(t_stack **a, t_list **ops);
 t_stack	*rrotate_a(t_stack **a, t_list **ops);
 

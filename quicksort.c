@@ -38,7 +38,7 @@ t_stack	*quicksort_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	quicksort_b(a, b, ops, (len / 2 + len % 2));
 	i = -1;
 	while (++i < (len / 2 + len % 2))
-		push_a(a, b, ops);
+		*a = push_a(a, b, ops);
 	return (*a);
 }
 
@@ -58,7 +58,7 @@ t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		if (*((int *)tmp->content) > pivot)
 			push_a(a, b, ops);
 		else
-			rotate_b(a, ops);
+			rotate_b(b, ops);
 		tmp = (*b)->top;
 	}
 	i = -1;
@@ -68,6 +68,6 @@ t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	quicksort_a(a, b, ops, len / 2);
 	i = -1;
 	while (++i < (len / 2 + len % 2))
-		push_b(a, b, ops);
+		 push_b(a, b, ops);
 	return (*b);
 }

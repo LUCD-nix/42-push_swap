@@ -38,16 +38,16 @@ t_stack	*rrotate_a(t_stack **a, t_list **ops)
 	t_list *tmp;
 
 	tmp = (*a)->top;
-	if (tmp->next != NULL)
+	if ((*a)->top != (*a)->bottom)
 	{
 		while (tmp->next->next != NULL)
 			tmp = tmp->next;
+		(*a)->bottom->next = (*a)->top;
+		(*a)->top = (*a)->bottom;
+		(*a)->bottom = tmp;
+		tmp->next = NULL;
+		ft_lstadd_back(ops, ft_lstnew("rra"));
 	}
-	(*a)->bottom->next = (*a)->top;
-	(*a)->top = (*a)->bottom;
-	(*a)->bottom = tmp;
-	tmp->next = NULL;
-	ft_lstadd_back(ops, ft_lstnew("rra"));
 	return (*a);
 }
 
@@ -56,16 +56,16 @@ t_stack	*rrotate_b(t_stack **b, t_list **ops)
 	t_list *tmp;
 
 	tmp = (*b)->top;
-	if (tmp->next != NULL)
+	if ((*b)->top != (*b)->bottom)
 	{
 		while (tmp->next->next != NULL)
 			tmp = tmp->next;
+		(*b)->bottom->next = (*b)->top;
+		(*b)->top = (*b)->bottom;
+		(*b)->bottom = tmp;
+		tmp->next = NULL;
+		ft_lstadd_back(ops, ft_lstnew("rrb"));
 	}
-	(*b)->bottom->next = (*b)->top;
-	(*b)->top = (*b)->bottom;
-	(*b)->bottom = tmp;
-	tmp->next = NULL;
-	ft_lstadd_back(ops, ft_lstnew("rrb"));
 	return (*b);
 }
 
