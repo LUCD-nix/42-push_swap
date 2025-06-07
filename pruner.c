@@ -52,7 +52,7 @@ void	ft_lstremove2_and_join(t_list **first, t_list **to_del, void (*del)(void*))
 	}
 }
 
-// the contents of 
+// the content of ops is never malloced so this is fine
 void	do_nothing(void *a)
 {
 	(void)a;
@@ -92,7 +92,7 @@ t_list	*prune_iter(t_list	**ops)
 	old = ft_lstsize(*ops);
 	while (old > new)
 	{
-		old = new;
+		old = ft_lstsize(*ops);
 		new = prune_ops(ops);
 	}
 	return (*ops);
