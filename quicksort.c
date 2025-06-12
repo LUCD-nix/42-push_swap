@@ -9,9 +9,10 @@
 /*   Updated: 2025/05/25 14:03:02 by lucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft/libft.h"
 #include "push_swap.h"
 
-static t_stack	*sort_2a(t_stack **a, t_list **ops)
+t_stack	*sort_2a(t_stack **a, t_list **ops)
 {
 	t_list	*first;
 	t_list	*second;
@@ -29,7 +30,7 @@ static t_stack	*sort_2a(t_stack **a, t_list **ops)
 	return (*a);
 }
 
-static t_stack	*sort_2b(t_stack **b, t_list **ops)
+t_stack	*sort_2b(t_stack **b, t_list **ops)
 {
 	t_list	*first;
 	t_list	*second;
@@ -69,12 +70,12 @@ t_stack	*quicksort_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		tmp = (*a)->top;
 	}
 	i = -1;
-	while (++i < len / 2)
+	while (len / 2 != ft_lstsize((*a)->top) && ++i < len / 2)
 		rrotate_a(a, ops);
-	quicksort_a(a, b, ops, len / 2);
-	quicksort_b(a, b, ops, (len / 2 + len % 2));
+	quicksort_a(a, b, ops, (len - len / 2));
+	quicksort_b(a, b, ops, len / 2);
 	i = -1;
-	while (++i < (len / 2 + len % 2))
+	while (++i < (len / 2))
 		push_a(a, b, ops);
 	return (*a);
 }
@@ -101,12 +102,12 @@ t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		tmp = (*b)->top;
 	}
 	i = -1;
-	while (++i < len / 2)
+	while (len / 2 != ft_lstsize((*b)->top) && ++i < len / 2)
 		rrotate_b(b, ops);
-	quicksort_b(a, b, ops, len / 2 + len % 2);
-	quicksort_a(a, b, ops, len / 2);
+	quicksort_b(a, b, ops, len / 2);
+	quicksort_a(a, b, ops, (len - len / 2));
 	i = -1;
-	while (++i < (len / 2 + len % 2))
+	while (++i < (len - len / 2))
 		 push_b(a, b, ops);
 	return (*b);
 }

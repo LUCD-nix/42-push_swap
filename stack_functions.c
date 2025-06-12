@@ -77,6 +77,8 @@ t_stack	*push_a(t_stack **a, t_stack **b, t_list **ops)
 	(*a)->top = (*b)->top;
 	(*b)->top = (*b)->top->next;
 	(*a)->top->next = tmp;
+	if (!(*a)->bottom)
+		(*a)->bottom = (*a)->top;
 	ft_lstadd_back(ops, ft_lstnew("pa"));
 	return (*a);
 }

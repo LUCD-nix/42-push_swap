@@ -28,3 +28,21 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (((int)*ss1 - (int)*ss2) * (n != 0));
 }
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	const unsigned char	*ss1;
+	const unsigned char	*ss2;
+
+	if (!s1 || !s2)
+		return (0);
+	ss1 = (const unsigned char *) s1;
+	ss2 = (const unsigned char *) s2;
+	while (*ss2 && *ss1 && *ss1 == *ss2)
+	{
+		ss1++;
+		ss2++;
+	}
+	return (((int)*ss1 - (int)*ss2));
+}
+
