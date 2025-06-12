@@ -81,11 +81,11 @@ size_t	prune_ops(t_list **ops)
 			|| (!ft_strcmp(content, "rb") && !ft_strcmp(next, "ra")))
 			ft_lstremove2_and_replace(ops, &cursor, &do_nothing, "rr");
 		else if ((!ft_strcmp(content, "rra") && !ft_strcmp(next, "rrb"))
-			|| (!ft_strcmp(content, "rrb") && !ft_strcmp(next, "rrb")))
+			|| (!ft_strcmp(content, "rrb") && !ft_strcmp(next, "rra")))
 			ft_lstremove2_and_replace(ops, &cursor, &do_nothing, "rrr");
-		// else if ((!ft_strcmp(content, "sa") && !ft_strcmp(next, "sb"))
-		// 	|| (!ft_strcmp(content, "sb") && !ft_strcmp(next, "sa")))
-		// 	ft_lstremove2_and_replace(ops, &cursor, &do_nothing, "ss");
+		else if ((!ft_strcmp(content, "sa") && !ft_strcmp(next, "sb"))
+			|| (!ft_strcmp(content, "sb") && !ft_strcmp(next, "sa")))
+			ft_lstremove2_and_replace(ops, &cursor, &do_nothing, "ss");
 		cursor = cursor->next;
 	}
 	return (ft_lstsize(*ops));

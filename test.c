@@ -56,24 +56,24 @@ int	main(void)
 	t_list *ops;
 	t_stack *a;
 	t_stack *b;
-	int		arr[64] = { 33, 35, 63, 28, 56, 30, 37, 51, 62, 10, 0, 50, 27, 44, 59, 21, 23, 24, 38, 9, 54, 14, 57, 11, 58, 40, 34, 25, 46, 17, 6, 29, 61, 12, 3, 19, 39, 55, 52, 18, 26, 1, 22, 4, 31, 32, 8, 16, 7, 60, 5, 49, 45, 43, 36, 15, 53, 47, 48, 2, 41, 42, 20, 13  };
+	int		arr[16] = { 0, 13, 11, 12, 5, 7, 9, 8, 14, 10, 4, 15, 2, 3, 1, 6 };
 	int		i;
 
 	i = -1;
 	a = ft_calloc(1, sizeof(t_stack));
 	b = ft_calloc(1, sizeof(t_stack));
 	tester = NULL;
-	while (++i < 64)
+	while (++i < 16)
 		ft_lstadd_back(&tester, ft_lstnew(&arr[i]));
 	a->top = tester;
 	a->bottom = ft_lstlast(tester);
 	b->top = NULL;
 	b->bottom = NULL;
 	ops = NULL;
-	a = quicksort_a(&a, &b, &ops, 64);
-	// prune_iter(&ops);
+	a = quicksort_a(&a, &b, &ops, 16);
+#ifdef PRUNER
+	prune_iter(&ops);
+#endif
 	ft_lstiter(a->top, &lstprintnbr);
 	ft_lstiter(ops, &lstprintchr);// return (1);
 }
-
-// t
