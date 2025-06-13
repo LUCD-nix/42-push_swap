@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_functions.c                                  :+:      :+:    :+:   */
+/*   stack_rotate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucorrei <lucorrei@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,8 +9,6 @@
 /*   Updated: 2025/05/25 14:03:52 by lucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft/libft.h"
 #include "push_swap.h"
 
 t_stack	*rotate_a(t_stack **a, t_list **ops)
@@ -35,7 +33,7 @@ t_stack	*rotate_b(t_stack **b, t_list **ops)
 
 t_stack	*rrotate_a(t_stack **a, t_list **ops)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*a)->top;
 	if ((*a)->top != (*a)->bottom)
@@ -53,7 +51,7 @@ t_stack	*rrotate_a(t_stack **a, t_list **ops)
 
 t_stack	*rrotate_b(t_stack **b, t_list **ops)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = (*b)->top;
 	if ((*b)->top != (*b)->bottom)
@@ -66,33 +64,5 @@ t_stack	*rrotate_b(t_stack **b, t_list **ops)
 		tmp->next = NULL;
 		ft_lstadd_back(ops, ft_lstnew("rrb"));
 	}
-	return (*b);
-}
-
-t_stack	*push_a(t_stack **a, t_stack **b, t_list **ops)
-{
-	t_list	*tmp;
-
-	tmp = (*a)->top;
-	(*a)->top = (*b)->top;
-	(*b)->top = (*b)->top->next;
-	(*a)->top->next = tmp;
-	if (!(*a)->bottom)
-		(*a)->bottom = (*a)->top;
-	ft_lstadd_back(ops, ft_lstnew("pa"));
-	return (*a);
-}
-
-t_stack	*push_b(t_stack **a, t_stack **b, t_list **ops)
-{
-	t_list	*tmp;
-
-	tmp = (*b)->top;
-	(*b)->top = (*a)->top;
-	(*a)->top = (*a)->top->next;
-	(*b)->top->next = tmp;
-	if (!(*b)->bottom)
-		(*b)->bottom = (*b)->top;
-	ft_lstadd_back(ops, ft_lstnew("pb"));
 	return (*b);
 }

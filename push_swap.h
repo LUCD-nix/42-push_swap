@@ -35,4 +35,12 @@ t_stack	*push_b(t_stack **a, t_stack **b, t_list **ops);
 t_stack	*quicksort_a(t_stack **a, t_stack **b, t_list **ops, size_t len);
 t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len);
 
+void	ft_lstremove2_and_join(t_list **first, t_list **to_del,
+			void (*del)(void*));
+void	ft_lstremove2_and_replace(t_list **first, t_list **to_del,
+			void (*del)(void*), char *to_add);
+
+t_stack	*sort_2a(t_stack **a, t_list **ops);
+t_stack	*sort_2b(t_stack **b, t_list **ops);
+
 #endif // PUSH_SWAP_H

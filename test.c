@@ -9,11 +9,7 @@
 /*   Updated: 2025/05/25 14:03:34 by lucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft/libft.h"
 #include "push_swap.h"
-
-t_stack	sort_2b(t_stack **b, t_list **ops);
 
 void	lstprintchr(void *str)
 {

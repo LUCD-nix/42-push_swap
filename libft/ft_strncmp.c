@@ -45,4 +45,3 @@ int	ft_strcmp(const char *s1, const char *s2)
 	}
 	return (((int)*ss1 - (int)*ss2));
 }
-
