@@ -105,8 +105,8 @@ t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	i = -1;
 	while (!full_stack && ++i < len - len / 2)
 		rrotate_b(b, ops);
-	quicksort_b(a, b, ops, (len - len / 2));
 	quicksort_a(a, b, ops, len / 2);
+	quicksort_b(a, b, ops, (len - len / 2));
 	i = -1;
 	while (++i < (len / 2))
 		push_b(a, b, ops);
