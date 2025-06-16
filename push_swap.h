@@ -24,6 +24,8 @@ void	do_nothing(void	*a);
 int		ft_lstmedian(t_list *lst, size_t size);
 t_list	*prune_iter(t_list	**ops);
 
+void	ft_sort_int_tab(int *arr, int size);
+
 t_stack	*rotate_a(t_stack **a, t_list **ops);
 t_stack	*rrotate_a(t_stack **a, t_list **ops);
 
@@ -35,6 +37,9 @@ t_stack	*push_b(t_stack **a, t_stack **b, t_list **ops);
 
 t_stack	*quicksort_a(t_stack **a, t_stack **b, t_list **ops, size_t len);
 t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len);
+
+t_stack	*qs_bottom_a(t_stack **a, t_stack **b, t_list **ops, size_t len);
+t_stack	*qs_bottom_b(t_stack **a, t_stack **b, t_list **ops, size_t len);
 
 void	ft_lstremove2_and_join(t_list **first, t_list **to_del,
 			void (*del)(void*));
