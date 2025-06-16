@@ -87,8 +87,6 @@ int	main(int argc, char **argv)
 	numbers = NULL;
 	while (cursor)
 	{
-#include <stdio.h>
-		printf("%s\n", (char *)cursor->content);
 		if (!check_input((char *)cursor->content))
 			return(clear_lists(&ops, &numbers));
 		cursor = cursor->next;
@@ -98,11 +96,14 @@ int	main(int argc, char **argv)
 	b = NULL;
 	a = ft_calloc(1, sizeof(t_stack));
 	b = ft_calloc(1, sizeof(t_stack));
+	// TODO :
 	// if (!a || !b)
 	// 	exit_error(strings, numbers, a, b);
 	a->top = numbers;
 	a->bottom = ft_lstlast(numbers);
-	a = quicksort_a(&a, &b, &ops, ft_lstsize(a->top));
+#include <stdio.h>
+	printf("%d\n", ft_lstsize(a->top));
+	a = qs_bottom_a(&a, &b, &ops, ft_lstsize(a->top));
 	ft_lstiter(a->top, &lstprintnbr);
 	return (0);
 }
