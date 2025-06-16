@@ -20,6 +20,7 @@ typedef struct s_stack
 	t_list	*bottom;
 }	t_stack;
 
+void	do_nothing(void	*a);
 int		ft_lstmedian(t_list *lst, size_t size);
 t_list	*prune_iter(t_list	**ops);
 
