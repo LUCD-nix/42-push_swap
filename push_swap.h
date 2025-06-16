@@ -20,9 +20,7 @@ typedef struct s_stack
 	t_list	*bottom;
 }	t_stack;
 
-// TODO : refactor a bit
 void	do_nothing(void	*a);
-void	ft_sort_int_tab(int *tab, int size);
 int		ft_lstmedian(t_list *lst, size_t size);
 t_list	*prune_iter(t_list	**ops);
 
