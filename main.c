@@ -101,9 +101,8 @@ int	main(int argc, char **argv)
 	// 	exit_error(strings, numbers, a, b);
 	a->top = numbers;
 	a->bottom = ft_lstlast(numbers);
-#include <stdio.h>
-	printf("%d\n", ft_lstsize(a->top));
-	a = qs_bottom_a(&a, &b, &ops, ft_lstsize(a->top));
-	ft_lstiter(a->top, &lstprintnbr);
+	a = quicksort_a(&a, &b, &ops, ft_lstsize(a->top));
+	prune_iter(&ops);
+	ft_lstiter(ops, &lstprintchr);
 	return (0);
 }

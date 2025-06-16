@@ -80,10 +80,10 @@ t_stack	*quicksort_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	if (len == 2)
 		return (sort_2a(a, ops));
 	qs_a_inner(a, b, ops, len);
-	i = -1;
-	while (!full_stack && ++i < len / 2)
-		rrotate_a(a, ops);
-	quicksort_a(a, b, ops, (len / 2));
+	if (full_stack)
+		quicksort_a(a, b, ops, (len / 2));
+	else
+		qs_bottom_a(a, b, ops, (len / 2));
 	quicksort_b(a, b, ops, (len - len / 2));
 	i = -1;
 	while (++i < (len - len / 2))
@@ -102,11 +102,11 @@ t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	if (len == 2)
 		return (sort_2b(b, ops));
 	qs_b_inner(a, b, ops, len);
-	i = -1;
-	while (!full_stack && ++i < len - len / 2)
-		rrotate_b(b, ops);
 	quicksort_a(a, b, ops, len / 2);
-	quicksort_b(a, b, ops, (len - len / 2));
+	if (full_stack)
+		quicksort_b(a, b, ops, (len - len / 2));
+	else
+		qs_bottom_b(a, b, ops, (len - len / 2));
 	i = -1;
 	while (++i < (len / 2))
 		push_b(a, b, ops);

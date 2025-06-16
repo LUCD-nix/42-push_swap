@@ -36,6 +36,7 @@ int	ft_lstmedian_bottom(t_list	*lst, size_t n)
 	}
 	ft_sort_int_tab(arr, (int)n);
 	res = arr[n / 2 - !(n % 2)];
+	// TODO : apply this where relevant
 	free(arr);
 	return (res);
 }
@@ -57,7 +58,35 @@ t_stack	*qs_bottom_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		if (*((int *)(*a)->top->content) <= pivot)
 			push_b(a, b, ops);
 	}
-	// quicksort_a(a, b, ops, len / 2);
-	// quicksort_b(a, b, ops, len - len / 2);
+	quicksort_a(a, b, ops, len / 2);
+	quicksort_b(a, b, ops, len - len / 2);
+	i = -1;
+	while (++i < (len - len / 2))
+		push_a(a, b, ops);
 	return (*a);
+}
+
+t_stack	*qs_bottom_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
+{
+	int pivot;
+	size_t i;
+
+	if (len == 1)
+		return (rrotate_b(b, ops));
+	if (len == 2)
+		return (rrotate_b(b, ops), rrotate_b(b, ops), sort_2b(b, ops));
+	pivot = ft_lstmedian_bottom((*b)->top, len);
+	i = -1;
+	while (++i < len)
+	{
+		rrotate_b(b, ops);
+		if (*((int *)(*b)->top->content) > pivot)
+			push_a(a, b, ops);
+	}
+	quicksort_a(a, b, ops, len / 2);
+	quicksort_b(a, b, ops, len - len / 2);
+	i = -1;
+	while (++i < (len / 2))
+		push_b(a, b, ops);
+	return (*b);
 }
