@@ -39,6 +39,12 @@ CFILES = ft_atoi.c\
 	ft_toupper.c\
 	get_next_line/get_next_line.c\
 	get_next_line/get_next_line_utils.c\
+	ft_printf/format.c\
+	ft_printf/format_functions.c\
+	ft_printf/input_handling.c\
+	ft_printf/input_helpers.c\
+	ft_printf/print_loop.c
+	
 
 BONUS = ft_lstadd_back_bonus.c\
 	ft_lstadd_front_bonus.c\
