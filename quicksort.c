@@ -39,7 +39,7 @@ static void	qs_b_inner(t_stack **a, t_stack **b, t_list **ops, size_t len)
 
 	tmp = (*b)->top;
 	i = -1;
-	pivot = ft_lstmedian((*b)->top, len);
+	pivot = ft_stack_median(b, a, ops, len);
 	while (++i < len)
 	{
 		if (*((int *)tmp->content) > pivot)
@@ -58,7 +58,7 @@ static void	qs_a_inner(t_stack **a, t_stack **b, t_list **ops, size_t len)
 
 	tmp = (*a)->top;
 	i = -1;
-	pivot = ft_lstmedian((*a)->top, len);
+	pivot = ft_stack_median(a, b, ops, len);
 	while (++i < len)
 	{
 		if (*((int *)tmp->content) <= pivot)

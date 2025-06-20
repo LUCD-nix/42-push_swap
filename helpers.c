@@ -43,14 +43,19 @@ void	ft_sort_int_tab(int *tab, int size)
 	}
 }
 
-int	ft_lstmedian(t_list *lst, size_t size)
+int	ft_stack_median(t_stack **stack1, t_stack **stack2, t_list **ops,
+		size_t size)
 {
 	int		*arr;
+	int		res;
+	t_list	*lst;
 	size_t	i;
 
+	lst = (*stack1)->top;
+	arr = NULL;
 	arr = ft_calloc(sizeof(int), size);
 	if (!arr)
-		return (0);
+		exit_error_sort_malloc(stack1, stack2, ops);
 	i = -1;
 	while (++i < size && lst)
 	{
@@ -58,7 +63,9 @@ int	ft_lstmedian(t_list *lst, size_t size)
 		lst = lst->next;
 	}
 	ft_sort_int_tab(arr, size);
-	return (arr[size / 2 - !(size % 2)]);
+	res = arr[size / 2 - !(size % 2)];
+	free(arr);
+	return (res);
 }
 
 void	ft_lstremove2_and_replace(t_list **first, t_list **to_del,

@@ -21,7 +21,8 @@ typedef struct s_stack
 }	t_stack;
 
 void	do_nothing(void	*a);
-int		ft_lstmedian(t_list *lst, size_t size);
+int		ft_stack_median(t_stack **stack1, t_stack **stack2,
+			 t_list ** ops, size_t size);
 t_list	*prune_iter(t_list	**ops);
 
 void	ft_sort_int_tab(int *arr, int size);
@@ -48,5 +49,13 @@ void	ft_lstremove2_and_replace(t_list **first, t_list **to_del,
 
 t_stack	*sort_2a(t_stack **a, t_list **ops);
 t_stack	*sort_2b(t_stack **b, t_list **ops);
+
+void	free_ops_and_stacks(t_list **ops, t_stack **a, t_stack **b);
+void	free_strs(char ***temp, t_list **strings);
+
+void	exit_error_input_treatment(char ***str_arr, t_list **strings);
+void	exit_error_stack_malloc(t_stack **a, t_stack **b, t_list **ops);
+void	exit_error_sort_malloc(t_stack **stack1, t_stack **stack2,
+			t_list **ops);
 
 #endif // PUSH_SWAP_H

@@ -12,18 +12,20 @@
 #include "libft/libft.h"
 #include "push_swap.h"
 
-int	ft_lstmedian_bottom(t_list	*lst, size_t n)
+int	ft_stack_median_bottom(t_stack **stack1, t_stack **stack2,
+		t_list **ops, size_t n)
 {
 	size_t	i;
 	size_t	len;
+	t_list	*lst;
 	int		*arr;
 	int		res;
 
+	lst = (*stack1)->top;
 	arr = NULL;
 	arr = ft_calloc(n, sizeof(int));
-	// TODO : 
-	// if (!arr)
-	// 	exit_error()
+	if (!arr)
+		exit_error_sort_malloc(stack1, stack2, ops);
 	i = -1;
 	len = ft_lstsize(lst);
 	while (++i < len - n)
@@ -36,7 +38,6 @@ int	ft_lstmedian_bottom(t_list	*lst, size_t n)
 	}
 	ft_sort_int_tab(arr, (int)n);
 	res = arr[n / 2 - !(n % 2)];
-	// TODO : apply this where relevant
 	free(arr);
 	return (res);
 }
@@ -50,7 +51,7 @@ t_stack	*qs_bottom_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		return (rrotate_a(a, ops));
 	if (len == 2)
 		return (rrotate_a(a, ops), rrotate_a(a, ops), sort_2a(a, ops));
-	pivot = ft_lstmedian_bottom((*a)->top, len);
+	pivot = ft_stack_median_bottom(a, b, ops, len);
 	i = -1;
 	while (++i < len)
 	{
@@ -75,7 +76,7 @@ t_stack	*qs_bottom_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		return (rrotate_b(b, ops));
 	if (len == 2)
 		return (rrotate_b(b, ops), rrotate_b(b, ops), sort_2b(b, ops));
-	pivot = ft_lstmedian_bottom((*b)->top, len);
+	pivot = ft_stack_median_bottom(b, a, ops, len);
 	i = -1;
 	while (++i < len)
 	{

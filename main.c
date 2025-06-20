@@ -55,6 +55,31 @@ int	check_input(char *str)
 	}
 	return (1);
 }
+char	**input_to_heap_array(int argc, char **argv)
+{
+	char	**res;
+	int	i;
+
+	res = NULL;
+	if (argc == 2)
+		res = ft_split(argv[1], ' ');
+	else
+	{
+		res = ft_calloc(argc, sizeof(char *));
+		if (!res)
+			exit_error_input_treatment(&res, NULL);
+		i = 0;
+		while (i + 1 < argc)
+		{
+			res[i] = ft_strdup(argv[i + 1]);
+			if (!res[i])
+				exit_error_input_treatment(&res, NULL);
+			i++;
+		}
+		res[i] = NULL;
+	}
+	return (res);
+}
 
 int	main(int argc, char **argv)
 {
@@ -66,43 +91,42 @@ int	main(int argc, char **argv)
 	t_stack	*a;
 	t_stack	*b;
 	int	i;
-	int	j;
 
-	temp = NULL;
-	// all in one big string;
-	if (argc == 2)
-		temp = ft_split(argv[1],' ');
-	else
-		temp = argv + 1;
+	temp = input_to_heap_array(argc, argv);
 	i = -1;
-	j = -1;
-	while (temp[++j])
-		;
 	strings = NULL;
-	// This needs testing but it should be fine
-	while (++i < j)
-		ft_lstadd_back(&strings, ft_lstnew(temp[i]));
+	while (temp[++i])
+	{
+		t_list	*to_add = NULL;
+		to_add = ft_lstnew(temp[i]);
+		if (!to_add)
+			exit_error_input_treatment(&temp, &strings);
+		ft_lstadd_back(&strings, to_add);
+	}
 	cursor = strings;
 	ops = NULL;
 	numbers = NULL;
 	while (cursor)
 	{
 		if (!check_input((char *)cursor->content))
-			return(clear_lists(&ops, &numbers));
+			exit_error_input_treatment(&temp, &strings);
 		cursor = cursor->next;
 	}
 	numbers = ft_lstmap(strings, &ps_atoi, &free);
+	if (!numbers)
+		exit_error_input_treatment(&temp, &strings);
+	free_strs(&temp, &strings);
 	a = NULL;
 	b = NULL;
 	a = ft_calloc(1, sizeof(t_stack));
 	b = ft_calloc(1, sizeof(t_stack));
-	// TODO :
-	// if (!a || !b)
-	// 	exit_error(strings, numbers, a, b);
+	if (!a || !b)
+		exit_error_stack_malloc(&a, &b, &ops);
 	a->top = numbers;
 	a->bottom = ft_lstlast(numbers);
 	a = quicksort_a(&a, &b, &ops, ft_lstsize(a->top));
 	prune_iter(&ops);
 	ft_lstiter(ops, &lstprintchr);
+	free_ops_and_stacks(&ops, &a, &b);
 	return (0);
 }
