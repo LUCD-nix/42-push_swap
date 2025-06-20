@@ -33,4 +33,3 @@ void	free_ops_and_stacks(t_list **ops, t_stack **a, t_stack **b)
 	*a = NULL;
 	*b = NULL;
 }
-

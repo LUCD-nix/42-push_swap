@@ -37,7 +37,7 @@ t_stack	*sort_2b(t_stack **b, t_list **ops)
 
 	first = (*b)->top;
 	second = (*b)->top->next;
-	if (*(int*) first->content < *(int*) second->content)
+	if (*(int *) first->content < *(int *) second->content)
 	{
 		tmp = first->content;
 		first->content = second->content;

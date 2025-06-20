@@ -44,8 +44,8 @@ int	ft_stack_median_bottom(t_stack **stack1, t_stack **stack2,
 
 t_stack	*qs_bottom_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 {
-	int pivot;
-	size_t i;
+	int		pivot;
+	size_t	i;
 
 	if (len == 1)
 		return (rrotate_a(a, ops));
@@ -69,8 +69,8 @@ t_stack	*qs_bottom_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 
 t_stack	*qs_bottom_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 {
-	int pivot;
-	size_t i;
+	int		pivot;
+	size_t	i;
 
 	if (len == 1)
 		return (rrotate_b(b, ops));
