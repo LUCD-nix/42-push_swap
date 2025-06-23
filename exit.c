@@ -12,14 +12,6 @@
 #include "push_swap.h"
 #include <errno.h>
 #include <stdlib.h>
-// TODO : list of variables to free:
-// a stack
-// b stack
-	// numbers and its contents;
-// strings and therefore also:
-	// temp (initial array of strings)
-// ops but not its contents
-//
 
 void	exit_error_sort_malloc(t_stack **stack1, t_stack **stack2,
 			t_list **ops)

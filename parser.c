@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+#include <limits.h>
 
 void	*ps_atoi(void *str)
 {
@@ -25,6 +26,18 @@ void	*ps_atoi(void *str)
 
 int	check_input(char *str)
 {
+	int				size;
+	long	tester;
+
+	size = ft_strlen((const char *) str);
+	if (size > 11)
+		return (0);
+	else if (size == 11 || size == 10)
+	{
+		tester = ft_atol(str);
+		if (tester > (long)INT_MAX || tester < (long)INT_MIN)
+			return (1);
+	}
 	if (!str)
 		return (0);
 	if (*str == '-' || *str == '+')
