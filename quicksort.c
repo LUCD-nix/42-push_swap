@@ -9,7 +9,6 @@
 /*   Updated: 2025/05/25 14:03:02 by lucorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft/libft.h"
 #include "push_swap.h"
 
 char	ft_lst_issort_n(t_list *lst, size_t n, int sign)
@@ -45,7 +44,7 @@ static void	qs_b_inner(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		if (*((int *)tmp->content) > pivot)
 			push_a(a, b, ops);
 		else
-			rotate_b(b, ops);
+			rotate_b(a, b, ops);
 		tmp = (*b)->top;
 	}
 }
@@ -64,7 +63,7 @@ static void	qs_a_inner(t_stack **a, t_stack **b, t_list **ops, size_t len)
 		if (*((int *)tmp->content) <= pivot)
 			push_b(a, b, ops);
 		else
-			rotate_a(a, ops);
+			rotate_a(a, b, ops);
 		tmp = (*a)->top;
 	}
 }
@@ -78,7 +77,7 @@ t_stack	*quicksort_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	if (len <= 1 || ft_lst_issort_n((*a)->top, len, 1))
 		return (*a);
 	if (len == 2)
-		return (sort_2a(a, ops));
+		return (sort_2a(a, b, ops));
 	qs_a_inner(a, b, ops, len);
 	if (full_stack)
 		quicksort_a(a, b, ops, (len / 2));
@@ -100,7 +99,7 @@ t_stack	*quicksort_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	if (len <= 1 || ft_lst_issort_n((*b)->top, len, -1))
 		return (*b);
 	if (len == 2)
-		return (sort_2b(b, ops));
+		return (sort_2b(a, b, ops));
 	qs_b_inner(a, b, ops, len);
 	quicksort_a(a, b, ops, len / 2);
 	if (full_stack)

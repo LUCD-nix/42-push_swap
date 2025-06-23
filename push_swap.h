@@ -27,17 +27,20 @@ void	check_input_iter(t_list **strings, char ***temp);
 char	**input_to_heap_array(int argc, char **argv);
 
 /* Stack operations */
-t_stack	*rotate_a(t_stack **a, t_list **ops);
-t_stack	*rrotate_a(t_stack **a, t_list **ops);
+t_stack	*rotate_a(t_stack **a, t_stack **b, t_list **ops);
+t_stack	*rrotate_a(t_stack **a, t_stack **b, t_list **ops);
 
-t_stack	*rotate_b(t_stack **b, t_list **ops);
-t_stack	*rrotate_b(t_stack **b, t_list **ops);
+t_stack	*rotate_b(t_stack **a, t_stack **b, t_list **ops);
+t_stack	*rrotate_b(t_stack **a, t_stack **b, t_list **ops);
 
 t_stack	*push_a(t_stack **a, t_stack **b, t_list **ops);
 t_stack	*push_b(t_stack **a, t_stack **b, t_list **ops);
 
-t_stack	*sort_2a(t_stack **a, t_list **ops);
-t_stack	*sort_2b(t_stack **b, t_list **ops);
+t_stack	*sort_2a(t_stack **a, t_stack **b, t_list **ops);
+t_stack	*sort_2b(t_stack **a, t_stack **b, t_list **ops);
+
+void	add_op_or_exit(const char *op,
+			t_stack **stack1, t_stack **stack2, t_list **ops);
 
 /* Find the median of stack1 */
 int		ft_stack_median(t_stack **stack1, t_stack **stack2,

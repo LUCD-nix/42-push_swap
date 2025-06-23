@@ -11,7 +11,19 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-t_stack	*sort_2a(t_stack **a, t_list **ops)
+void	add_op_or_exit(const char *op,
+			t_stack **stack1, t_stack **stack2, t_list **ops)
+{
+	t_list	*to_add;
+
+	to_add = NULL;
+	to_add = ft_lstnew((void *)op);
+	if (!to_add)
+		exit_error_sort_malloc(stack1, stack2, ops);
+	ft_lstadd_back(ops, to_add);
+}
+
+t_stack	*sort_2a(t_stack **a, t_stack **b, t_list **ops)
 {
 	t_list	*first;
 	t_list	*second;
@@ -24,12 +36,12 @@ t_stack	*sort_2a(t_stack **a, t_list **ops)
 		tmp = first->content;
 		first->content = second->content;
 		second->content = tmp;
-		ft_lstadd_back(ops, ft_lstnew("sa"));
+		add_op_or_exit("sa", a, b, ops);
 	}
 	return (*a);
 }
 
-t_stack	*sort_2b(t_stack **b, t_list **ops)
+t_stack	*sort_2b(t_stack **a, t_stack **b, t_list **ops)
 {
 	t_list	*first;
 	t_list	*second;
@@ -42,7 +54,7 @@ t_stack	*sort_2b(t_stack **b, t_list **ops)
 		tmp = first->content;
 		first->content = second->content;
 		second->content = tmp;
-		ft_lstadd_back(ops, ft_lstnew("sb"));
+		add_op_or_exit("sb", a, b, ops);
 	}
 	return (*b);
 }
@@ -57,7 +69,7 @@ t_stack	*push_a(t_stack **a, t_stack **b, t_list **ops)
 	(*a)->top->next = tmp;
 	if (!(*a)->bottom)
 		(*a)->bottom = (*a)->top;
-	ft_lstadd_back(ops, ft_lstnew("pa"));
+	add_op_or_exit("pa", a, b, ops);
 	return (*a);
 }
 
@@ -71,6 +83,6 @@ t_stack	*push_b(t_stack **a, t_stack **b, t_list **ops)
 	(*b)->top->next = tmp;
 	if (!(*b)->bottom)
 		(*b)->bottom = (*b)->top;
-	ft_lstadd_back(ops, ft_lstnew("pb"));
+	add_op_or_exit("pb", a, b, ops);
 	return (*b);
 }

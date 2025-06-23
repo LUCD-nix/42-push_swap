@@ -11,27 +11,27 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 
-t_stack	*rotate_a(t_stack **a, t_list **ops)
+t_stack	*rotate_a(t_stack **a, t_stack **b, t_list **ops)
 {
 	(*a)->bottom->next = (*a)->top;
 	(*a)->bottom = (*a)->top;
 	(*a)->top = (*a)->top->next;
 	(*a)->bottom->next = NULL;
-	ft_lstadd_back(ops, ft_lstnew("ra"));
+	add_op_or_exit("ra", a, b, ops);
 	return (*a);
 }
 
-t_stack	*rotate_b(t_stack **b, t_list **ops)
+t_stack	*rotate_b(t_stack **a, t_stack **b, t_list **ops)
 {
 	(*b)->bottom->next = (*b)->top;
 	(*b)->bottom = (*b)->top;
 	(*b)->top = (*b)->top->next;
 	(*b)->bottom->next = NULL;
-	ft_lstadd_back(ops, ft_lstnew("rb"));
+	add_op_or_exit("rb", a, b, ops);
 	return (*b);
 }
 
-t_stack	*rrotate_a(t_stack **a, t_list **ops)
+t_stack	*rrotate_a(t_stack **a, t_stack **b, t_list **ops)
 {
 	t_list	*tmp;
 
@@ -44,12 +44,12 @@ t_stack	*rrotate_a(t_stack **a, t_list **ops)
 		(*a)->top = (*a)->bottom;
 		(*a)->bottom = tmp;
 		tmp->next = NULL;
-		ft_lstadd_back(ops, ft_lstnew("rra"));
+		add_op_or_exit("rra", a, b, ops);
 	}
 	return (*a);
 }
 
-t_stack	*rrotate_b(t_stack **b, t_list **ops)
+t_stack	*rrotate_b(t_stack **a, t_stack **b, t_list **ops)
 {
 	t_list	*tmp;
 
@@ -62,7 +62,7 @@ t_stack	*rrotate_b(t_stack **b, t_list **ops)
 		(*b)->top = (*b)->bottom;
 		(*b)->bottom = tmp;
 		tmp->next = NULL;
-		ft_lstadd_back(ops, ft_lstnew("rrb"));
+		add_op_or_exit("rrb", a, b, ops);
 	}
 	return (*b);
 }

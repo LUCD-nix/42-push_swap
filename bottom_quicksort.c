@@ -48,14 +48,14 @@ t_stack	*qs_bottom_a(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	size_t	i;
 
 	if (len == 1)
-		return (rrotate_a(a, ops));
+		return (rrotate_a(a, b, ops));
 	if (len == 2)
-		return (rrotate_a(a, ops), rrotate_a(a, ops), sort_2a(a, ops));
+		return (rrotate_a(a, b, ops), rrotate_a(a, b, ops), sort_2a(a, b, ops));
 	pivot = ft_stack_median_bottom(a, b, ops, len);
 	i = -1;
 	while (++i < len)
 	{
-		rrotate_a(a, ops);
+		rrotate_a(a, b, ops);
 		if (*((int *)(*a)->top->content) <= pivot)
 			push_b(a, b, ops);
 	}
@@ -73,14 +73,14 @@ t_stack	*qs_bottom_b(t_stack **a, t_stack **b, t_list **ops, size_t len)
 	size_t	i;
 
 	if (len == 1)
-		return (rrotate_b(b, ops));
+		return (rrotate_b(a, b, ops));
 	if (len == 2)
-		return (rrotate_b(b, ops), rrotate_b(b, ops), sort_2b(b, ops));
+		return (rrotate_b(a, b, ops), rrotate_b(a, b, ops), sort_2b(a, b, ops));
 	pivot = ft_stack_median_bottom(b, a, ops, len);
 	i = -1;
 	while (++i < len)
 	{
-		rrotate_b(b, ops);
+		rrotate_b(a, b, ops);
 		if (*((int *)(*b)->top->content) > pivot)
 			push_a(a, b, ops);
 	}
