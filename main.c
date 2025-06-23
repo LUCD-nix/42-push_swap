@@ -51,9 +51,15 @@ void	sort_and_exit(t_stack **a, t_stack **b)
 
 	ops = NULL;
 	*a = quicksort_a(a, b, &ops, ft_lstsize((*a)->top));
+	ft_lstclear(&(*a)->top, &free);
+	ft_lstclear(&(*b)->top, &free);
+	free(*a);
+	free(*b);
+	*a = NULL;
+	*b = NULL;
 	prune_iter(&ops);
 	ft_lstiter(ops, &lstprintchr);
-	free_ops_and_stacks(&ops, a, b);
+	ft_lstclear(&ops, &do_nothing);
 }
 
 int	main(int argc, char **argv)

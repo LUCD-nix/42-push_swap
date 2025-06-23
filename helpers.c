@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
+#include <stdlib.h>
 
 static void	swap(int *a, int *b)
 {
@@ -84,6 +85,12 @@ void	ft_lstremove2_and_replace(t_list **first, t_list **to_del,
 		ft_lstdelone((*to_del)->next, del);
 		ft_lstdelone((*to_del), del);
 		new = ft_lstnew(to_add);
+		if (!new)
+		{
+			ft_lstclear(first, &do_nothing);
+			ft_printf("Error\n");
+			exit(EXIT_FAILURE);
+		}
 		cursor->next = new;
 		new->next = tmp;
 		*to_del = new;
