@@ -50,6 +50,7 @@ char		*ft_strnstr(const char *big, const char *little, size_t len);
 
 int			ft_atoi(char *str);
 int			ft_atoi_consume(char **str);
+long		ft_atol(char *str);
 char		*ft_itoa(int n);
 char		*ft_itoa_16(int n);
 char		*ft_uitoa(unsigned int n);

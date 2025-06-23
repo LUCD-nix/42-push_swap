@@ -46,6 +46,29 @@ int	ft_atoi_consume(char **str)
 	}
 	return (res);
 }
+
+long	ft_atol(char *str)
+{
+	long	res;
+	long	sign;
+
+	sign = 1;
+	res = 0;
+	while (*str && ft_strchr("\t\n\v\f\r ", *str))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		sign -= 2 * (*str == '-');
+		str++;
+	}
+	while (ft_isdigit(*str))
+	{
+		res *= 10;
+		res += *(str++) - '0';
+	}
+	return (sign * res);
+}
+
 /*
 int	main(int argc, char **argv)
 {
