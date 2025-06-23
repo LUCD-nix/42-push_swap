@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 #include <limits.h>
+#include <stdlib.h>
 
 void	*ps_atoi(void *str)
 {
@@ -70,6 +71,8 @@ char	**input_to_heap_array(int argc, char **argv)
 	int		i;
 
 	res = NULL;
+	if (argc == 1)
+		exit(EXIT_FAILURE);
 	if (argc == 2)
 		res = ft_split(argv[1], ' ');
 	else
