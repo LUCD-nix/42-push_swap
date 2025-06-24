@@ -48,9 +48,17 @@ void	alloc_stacks(t_stack **a, t_stack **b)
 void	sort_and_exit(t_stack **a, t_stack **b)
 {
 	t_list	*ops;
+	t_list	*cursor;
 
 	ops = NULL;
 	*a = quicksort_a(a, b, &ops, ft_lstsize((*a)->top));
+	cursor = (*a)->top;
+	while (cursor->next)
+	{
+		if (*(int *)cursor->content == *(int *)cursor->next->content)
+			exit_error_sort_malloc(a, b, &ops);
+		cursor = cursor->next;
+	}
 	ft_lstclear(&(*a)->top, &free);
 	ft_lstclear(&(*b)->top, &free);
 	free(*a);

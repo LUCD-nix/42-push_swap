@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 #include "push_swap.h"
 #include <limits.h>
-#include <stdlib.h>
 
 void	*ps_atoi(void *str)
 {
@@ -27,7 +26,7 @@ void	*ps_atoi(void *str)
 
 int	check_input(char *str)
 {
-	int				size;
+	int		size;
 	long	tester;
 
 	size = ft_strlen((const char *) str);

@@ -18,7 +18,6 @@ void	exit_error_sort_malloc(t_stack **stack1, t_stack **stack2,
 {
 	free_ops_and_stacks(ops, stack1, stack2);
 	ft_printf("Error\n");
-	errno = ENOMEM;
 	exit(EXIT_FAILURE);
 }
 
